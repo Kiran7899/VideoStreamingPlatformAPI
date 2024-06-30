@@ -11,12 +11,12 @@ namespace VideoStreamingPlatformAPI.Services
             this._userRepository = userRepository;
         }
 
-        public string Login(string userName, string password)
+        public string Login(string email, string password)
         {
             var Users = _userRepository.GetUsers();
             foreach (var user in Users)
             {
-                if (user.Email == userName && user.Password == password)
+                if (user.Email == email && user.Password == password)
                     return "Success";
             }
             return "Invalid Login";

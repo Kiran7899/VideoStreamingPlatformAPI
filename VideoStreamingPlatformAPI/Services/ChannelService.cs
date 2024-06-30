@@ -8,11 +8,9 @@ namespace VideoStreamingPlatformAPI.Services
     public class ChannelService : IChannelService
     {
         IChannelRepository ChannelRepository;
-        IDepartmentRepository DepartmentRepository;
-        public ChannelService(IChannelRepository ChannelRepository, IDepartmentRepository DepartmentRepository)
+        public ChannelService(IChannelRepository ChannelRepository)
         {
             this.ChannelRepository = ChannelRepository;
-            this.DepartmentRepository = DepartmentRepository;
         }
 
         public Channel CreateChannel(int DepartmentId, string ChannelName, string CreatedBy)
