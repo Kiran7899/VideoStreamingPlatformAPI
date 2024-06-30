@@ -5,7 +5,7 @@ namespace VideoStreamingPlatformAPI.Repositories.ChannelRepository
 {
     public class InMemoryChannelRepository : IChannelRepository
     {
-        Dictionary<int,Channel> ChannelMapByID = new Dictionary<int,Channel>();
+        static Dictionary<int,Channel> ChannelMapByID = new Dictionary<int,Channel>();
         static int ChannelId = 0;
 
         IDepartmentRepository departmentRepository;

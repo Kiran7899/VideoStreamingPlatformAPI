@@ -1,4 +1,5 @@
 
+using VideoStreamingPlatformAPI.Logger;
 using VideoStreamingPlatformAPI.Repositories;
 using VideoStreamingPlatformAPI.Repositories.ChannelRepository;
 using VideoStreamingPlatformAPI.Services;
@@ -23,6 +24,10 @@ namespace VideoStreamingPlatformAPI
             builder.Services.AddTransient<IDepartmentRepository, InMemoryDepartmentRepository>();
             builder.Services.AddTransient<IChannelService, ChannelService>();
             builder.Services.AddTransient<IChannelRepository, InMemoryChannelRepository>();
+            builder.Services.AddTransient<ISubscribeService, SubscribeService>();
+            builder.Services.AddTransient<IVideoService, VideoService>();
+            builder.Services.AddTransient<IVideoRepository, InMemoryVideoRepository>();
+            builder.Services.AddSingleton<VideoStreamingPlatformAPI.Logger.ILoggerVideoStreamingAPI, ConsoleLogger>();
 
             var app = builder.Build();
 
