@@ -8,12 +8,10 @@ namespace VideoStreamingPlatformAPI.Services
     {
         IUserRepository userRepository;
         IChannelRepository channelRepository;
-        IVideoService videoService;
-        public SubscribeService(IUserRepository userRepository, IChannelRepository channelRepository,IVideoService videoService)
+        public SubscribeService(IUserRepository userRepository, IChannelRepository channelRepository)
         {
             this.channelRepository = channelRepository;
             this.userRepository = userRepository;
-            this.videoService = videoService;
         }
         public void Subscribe(string userEmail, int channelID)
         {
@@ -31,6 +29,8 @@ namespace VideoStreamingPlatformAPI.Services
         {
             User user = userRepository.GetUserByEmail(userEmail);
             Channel channel = channelRepository.GetChannelById(channelID);
+
+            channel.Subscribers.Remove(user);
 
             VideoService.VideoUploaded -= user.ReceiveNotificationFromSubscribedChannels;
 
