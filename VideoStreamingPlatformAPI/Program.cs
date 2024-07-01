@@ -27,6 +27,8 @@ namespace VideoStreamingPlatformAPI
             builder.Services.AddTransient<ISubscribeService, SubscribeService>();
             builder.Services.AddTransient<IVideoService, VideoService>();
             builder.Services.AddTransient<IVideoRepository, InMemoryVideoRepository>();
+            builder.Services.AddTransient<ICommentRepository,InMemoryCommentRepository>();
+            builder.Services.AddTransient<ILikeRepository, InMemoryLikeRepository>();   
             builder.Services.AddSingleton<VideoStreamingPlatformAPI.Logger.ILoggerVideoStreamingAPI, ConsoleLogger>();
 
             var app = builder.Build();

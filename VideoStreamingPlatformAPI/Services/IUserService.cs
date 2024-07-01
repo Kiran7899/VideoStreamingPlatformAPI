@@ -12,6 +12,10 @@ namespace VideoStreamingPlatformAPI.Services
             UserTypeEnum role);
 
         string Login(string userName, string password);
+
+        bool Comment(int videoId, string comment,string userEmail);
+
+        bool Like(int videoId, string userEmail);
         
     }
 }

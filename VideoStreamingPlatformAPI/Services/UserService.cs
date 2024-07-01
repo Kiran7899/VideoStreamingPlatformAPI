@@ -11,6 +11,28 @@ namespace VideoStreamingPlatformAPI.Services
             this._userRepository = userRepository;
         }
 
+        public bool Comment(int videoId, string comment, string userEmail)
+        {
+            var user = _userRepository.GetUserByEmail(userEmail);
+            if (user != null)
+            {
+                var IsCommentAdded = user.CommentOnVideo(videoId, comment);
+                return IsCommentAdded;
+            }
+            return false;
+        }
+
+        public bool Like(int videoId, string userEmail)
+        {
+            var user = _userRepository.GetUserByEmail(userEmail);
+            bool isLikeAdded = false;
+            if (user != null) 
+            {
+                isLikeAdded = user.LikeVideo(videoId);
+            }
+            return isLikeAdded;
+        }
+
         public string Login(string email, string password)
         {
             var Users = _userRepository.GetUsers();

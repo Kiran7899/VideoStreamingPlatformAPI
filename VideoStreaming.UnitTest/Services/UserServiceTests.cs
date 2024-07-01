@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VideoStreamingPlatformAPI.Repositories;
+using VideoStreamingPlatformAPI.Repositories.ChannelRepository;
 using VideoStreamingPlatformAPI.Services;
 
 namespace VideoStreaming.UnitTest.Services
@@ -21,6 +22,7 @@ namespace VideoStreaming.UnitTest.Services
         public void RegisterUser_PassRequiredParameters_UserShouldBeCreated()
         {
             //Arrange
+            
             var userRepo = new Mock<IUserRepository>();
             userRepo.Setup(user => user.RegisterUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DepartmentTypeEnum>(), It.IsAny<UserTypeEnum>()))
                 .Returns(new User() { Email = "kiran@gmail.com" });
@@ -36,7 +38,7 @@ namespace VideoStreaming.UnitTest.Services
         [Test]
         public void Login_PassValidUserNamePassword_ReturnsSuccessMessage()
         {
-            //Arrange
+            //Arrange            
             var userRepo = new Mock<IUserRepository>();
             userRepo.Setup(user => user.GetUsers()).Returns(new List<User>() { new User() { Email = "Kiran@gmail.com",Password = "abc@123" } }) ;
             var userService =GetUserService(userRepo.Object);
@@ -52,7 +54,7 @@ namespace VideoStreaming.UnitTest.Services
         public void Login_PassInValidPassword_ReturnsInvalidLoginMessage()
         {
             //Arrange
-            var userRepo = new Mock<IUserRepository>();
+            var userRepo = new Mock<IUserRepository>();           
             userRepo.Setup(user => user.GetUsers()).Returns(new List<User>() { new User() { Email = "Kiran@gmail.com", Password = "abc@123" } });
             var userService = GetUserService(userRepo.Object);
 
