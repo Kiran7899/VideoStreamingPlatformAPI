@@ -2,6 +2,6 @@
 {
     public interface ICommentRepository
     {
-        bool AddComment(int videoId, string comment);
+        bool AddComment(int videoId, string comment, string userEmail);
     }
 }

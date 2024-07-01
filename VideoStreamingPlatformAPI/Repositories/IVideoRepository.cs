@@ -7,5 +7,7 @@ namespace VideoStreamingPlatformAPI.Repositories
         Video CreateVideo(string userEmail, DepartmentTypeEnum DepartmentType, string Title, int ChannelID);
 
         Video GetVideoByID(int VideoID);
+
+        List<Video> GetVideos();
     }
 }

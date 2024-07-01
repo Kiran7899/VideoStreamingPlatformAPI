@@ -8,5 +8,7 @@ namespace VideoStreamingPlatformAPI.Services
         Video CreateVideo(string UserEmail, DepartmentTypeEnum DepartmentType, string Title, int channelId);
 
         static event VideoUploadedEventHandler VideoUploaded;
+
+        List<Video> GetVideos();
     }
 }

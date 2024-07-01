@@ -50,5 +50,11 @@ namespace VideoStreamingPlatformAPI.Services
                 VideoUploaded(this, new VideoEventArgs(title, email, channel.Name));
             }
         }
+
+        public List<Video> GetVideos()
+        {
+            var videos = VideoRepository.GetVideos();
+            return videos;
+        }
     }
 }
