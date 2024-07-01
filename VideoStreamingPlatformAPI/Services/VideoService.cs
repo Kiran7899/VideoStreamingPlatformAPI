@@ -11,17 +11,20 @@ namespace VideoStreamingPlatformAPI.Services
     {
         IVideoRepository VideoRepository;
         IChannelRepository channelRepository;
+        IUserRepository userRepository;
 
         public static event VideoUploadedEventHandler VideoUploaded;
 
-        public VideoService(IVideoRepository VideoRepository, IChannelRepository channelRepository)
+        public VideoService(IVideoRepository VideoRepository, IChannelRepository channelRepository, IUserRepository userRepository)
         {
             this.VideoRepository = VideoRepository;
             this.channelRepository = channelRepository; 
+            this.userRepository = userRepository;
         }
         public Video CreateVideo(string UserEmail, DepartmentTypeEnum DepartmentType, string Title,int channelId)
         {
            //DOUBT:::Need to validate the UserType, if they can create video or not? Or Can this be handled in UI itself?
+           
             
             var video = VideoRepository.CreateVideo(UserEmail, DepartmentType, Title, channelId);
             //NotifySubscribers(channelId, Title, UserEmail);

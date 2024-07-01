@@ -4,13 +4,13 @@ namespace VideoStreamingPlatformAPI.Repositories
 {
     public class InMemoryUserRepository : IUserRepository
     {
-        IDepartmentRepository DepartmentRepository;
+        IDepartmentRepository DepartmentRepository;        
         private static Dictionary<int, User> _users = new Dictionary<int, User>();
         private static int userCount = 0;
 
         public InMemoryUserRepository(IDepartmentRepository DepartmentRepository)
         {
-                this.DepartmentRepository = DepartmentRepository;
+                this.DepartmentRepository = DepartmentRepository;            
         }
         public User GetUserByEmail(string email)
         {

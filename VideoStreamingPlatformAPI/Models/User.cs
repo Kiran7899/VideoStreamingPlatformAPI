@@ -5,11 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using VideoStreamingPlatformAPI.Event;
 using VideoStreamingPlatformAPI.Models;
+using VideoStreamingPlatformAPI.Repositories;
 
 namespace InterviewVideoStraeming.Models
 {
     public class User : BaseModel
     {
+        ICommentRepository commentRepository; 
+        ILikeRepository likeRepository;
+        public User()
+        {
+
+        }
+        public User(ICommentRepository commentRepository, ILikeRepository likeRepository)
+        {
+            this.commentRepository = commentRepository;
+            this.likeRepository = likeRepository;
+        }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
@@ -17,8 +29,16 @@ namespace InterviewVideoStraeming.Models
         public UserTypeEnum UserType { get; set; }
         public List<Channel> SubscribedChannels { get; set; }
 
-        public void LikeVideo() { }
-        public void CommentOnVideo() { }
+        public bool LikeVideo(int videoId) 
+        {
+            return likeRepository.AddLike(videoId);
+        }
+        public bool CommentOnVideo(int videoId, string comment) 
+        {
+            return commentRepository.AddComment(videoId, comment);
+        }
+
+
 
 
         public void ReceiveNotification(string channelName, string videoTitle)

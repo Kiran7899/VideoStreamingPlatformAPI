@@ -53,6 +53,30 @@ namespace VideoStreamingPlatformAPI.Controllers
             }
         }
 
+        [HttpPost("Comment")]
+        public ActionResult<CommentResponseDto> Comment(CommentRequestDto commentRequestDto)
+        {
+            try
+            {
+                var isCommentAdded = userService.Comment(commentRequestDto.VideoID, commentRequestDto.Comment, commentRequestDto.UserEmail);
+                CommentResponseDto commentResponseDto = new CommentResponseDto();
+                commentResponseDto.IsSuccessfullyCommented = isCommentAdded;
+                _logger.Info($"{commentRequestDto.UserEmail}'s Comment is successfully added");
+                return Ok(commentResponseDto);
+            }
+            catch(Exception ex)
+            {
+                _logger.Error($"Error occurred while adding the comment",ex);
+                return StatusCode(500);
+            }
+        }
+
+        [HttpPost("Like")]
+        public ActionResult<LikeResponseDto> Like(LikeRequestDto likeRequestDto)
+        {
+            return null!;
+        }
+
 
     }
 }

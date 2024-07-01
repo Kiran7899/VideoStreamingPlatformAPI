@@ -13,5 +13,7 @@ namespace VideoStreamingPlatformAPI.Repositories
         List<User> GetUsers();
 
         User GetUserByEmail(string email);
+
+        
     }
 }

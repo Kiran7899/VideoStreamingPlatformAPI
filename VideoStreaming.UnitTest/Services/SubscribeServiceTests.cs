@@ -23,7 +23,7 @@ namespace VideoStreaming.UnitTest.Services
         {
             //Arrange
             var userRepository = new Mock<IUserRepository>();
-            var channelRepository = new Mock<IChannelRepository>();
+            var channelRepository = new Mock<IChannelRepository>();            
             Channel channel = new Channel();
             channel.Subscribers = new List<User>();
             channelRepository.Setup(ch => ch.GetChannelById(It.IsAny<int>())).Returns(channel);
@@ -46,8 +46,8 @@ namespace VideoStreaming.UnitTest.Services
             var channelRepository = new Mock<IChannelRepository>();
             Channel channel = new Channel();
             channel.Subscribers = new List<User>();
-            channelRepository.Setup(ch => ch.GetChannelById(It.IsAny<int>())).Returns(channel);
-            User user = new User();
+            channelRepository.Setup(ch => ch.GetChannelById(It.IsAny<int>())).Returns(channel);                  
+            User user = new User(); ;
             userRepository.Setup(us => us.GetUserByEmail(It.IsAny<string>())).Returns(user);
             var subscribeService = GetSubscribeService(userRepository.Object, channelRepository.Object);
             subscribeService.Subscribe("kiran@gmail.com", 1);

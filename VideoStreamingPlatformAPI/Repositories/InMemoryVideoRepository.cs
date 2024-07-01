@@ -34,5 +34,13 @@ namespace VideoStreamingPlatformAPI.Repositories
             
             return video;
         }
+
+        public Video GetVideoByID(int VideoID)
+        {
+            if(VideoMapByID.ContainsKey(VideoID))   
+                return VideoMapByID[VideoID];
+
+            return null!;
+        }
     }
 }
