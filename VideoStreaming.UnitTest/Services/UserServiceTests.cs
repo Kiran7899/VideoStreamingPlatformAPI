@@ -13,9 +13,9 @@ namespace VideoStreaming.UnitTest.Services
 {
     public class UserServiceTests
     {
-        private UserService GetUserService(IUserRepository userRepository)
+        private UserService GetUserService(IUserRepository userRepository,ICommentRepository commentRepository)
         {
-            return new UserService(userRepository);
+            return new UserService(userRepository,commentRepository);
         }
 
         [Test]
@@ -26,7 +26,8 @@ namespace VideoStreaming.UnitTest.Services
             var userRepo = new Mock<IUserRepository>();
             userRepo.Setup(user => user.RegisterUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DepartmentTypeEnum>(), It.IsAny<UserTypeEnum>()))
                 .Returns(new User() { Email = "kiran@gmail.com" });
-            var userService = GetUserService(userRepo.Object);
+            var commentRepo = new Mock<ICommentRepository>();   
+            var userService = GetUserService(userRepo.Object,commentRepo.Object);
 
             //Act
             var User = userService.RegisterUser("Kiran","Email","password",DepartmentTypeEnum.DX_ADMIN,UserTypeEnum.CREATOR);
@@ -41,7 +42,8 @@ namespace VideoStreaming.UnitTest.Services
             //Arrange            
             var userRepo = new Mock<IUserRepository>();
             userRepo.Setup(user => user.GetUsers()).Returns(new List<User>() { new User() { Email = "Kiran@gmail.com",Password = "abc@123" } }) ;
-            var userService =GetUserService(userRepo.Object);
+            var commentRepo = new Mock<ICommentRepository>();
+            var userService = GetUserService(userRepo.Object, commentRepo.Object);
 
             //Act
             var result = userService.Login("Kiran@gmail.com", "abc@123");
@@ -56,7 +58,8 @@ namespace VideoStreaming.UnitTest.Services
             //Arrange
             var userRepo = new Mock<IUserRepository>();           
             userRepo.Setup(user => user.GetUsers()).Returns(new List<User>() { new User() { Email = "Kiran@gmail.com", Password = "abc@123" } });
-            var userService = GetUserService(userRepo.Object);
+            var commentRepo = new Mock<ICommentRepository>();
+            var userService = GetUserService(userRepo.Object, commentRepo.Object);
 
             //Act
             var result = userService.Login("Kiran@gmail.com", "ab@123");
@@ -71,7 +74,8 @@ namespace VideoStreaming.UnitTest.Services
             //Arrange
             var userRepo = new Mock<IUserRepository>();
             userRepo.Setup(user => user.GetUsers()).Returns(new List<User>() { new User() { Email = "Kiran@gmail.com", Password = "abc@123" } });
-            var userService = GetUserService(userRepo.Object);
+            var commentRepo = new Mock<ICommentRepository>();
+            var userService = GetUserService(userRepo.Object, commentRepo.Object);
 
             //Act
             var result = userService.Login("Kira@gmail.com", "abc@123");

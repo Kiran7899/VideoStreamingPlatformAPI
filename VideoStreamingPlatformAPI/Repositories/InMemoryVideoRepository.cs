@@ -42,5 +42,10 @@ namespace VideoStreamingPlatformAPI.Repositories
 
             return null!;
         }
+
+        public List<Video> GetVideos()
+        {
+            return videos;
+        }
     }
 }

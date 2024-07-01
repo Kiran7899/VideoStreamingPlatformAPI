@@ -37,5 +37,21 @@ namespace VideoStreamingPlatformAPI.Controllers
                 return StatusCode(500); 
             }
         }
+
+        [HttpGet]
+        public ActionResult<GetAllVideosResponseDto> GetVideos()
+        {
+            try
+            {
+                var response = VideoService.GetVideos();
+                _logger.Info($"Total Videos {response!.Count}");
+                return Ok(response);
+            }
+            catch(Exception ex)
+            {
+                _logger.Error($"Exception occured while fetching the video", ex);
+                return StatusCode(500);
+            }
+        }
     }
 }

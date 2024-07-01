@@ -33,13 +33,10 @@ namespace InterviewVideoStraeming.Models
         {
             return likeRepository.AddLike(videoId);
         }
-        public bool CommentOnVideo(int videoId, string comment) 
+        public bool CommentOnVideo(int videoId, string comment,ICommentRepository commentRepository) 
         {
-            return commentRepository.AddComment(videoId, comment);
+            return commentRepository.AddComment(videoId, comment,Email);
         }
-
-
-
 
         public void ReceiveNotification(string channelName, string videoTitle)
         {

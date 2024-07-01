@@ -6,9 +6,11 @@ namespace VideoStreamingPlatformAPI.Services
     public class UserService : IUserService
     {
         IUserRepository _userRepository;
-        public UserService(IUserRepository userRepository)
+        ICommentRepository commentRepository;
+        public UserService(IUserRepository userRepository, ICommentRepository commentRepository)
         {
             this._userRepository = userRepository;
+            this.commentRepository = commentRepository;
         }
 
         public bool Comment(int videoId, string comment, string userEmail)
@@ -16,7 +18,7 @@ namespace VideoStreamingPlatformAPI.Services
             var user = _userRepository.GetUserByEmail(userEmail);
             if (user != null)
             {
-                var IsCommentAdded = user.CommentOnVideo(videoId, comment);
+                var IsCommentAdded = user.CommentOnVideo(videoId, comment,commentRepository);
                 return IsCommentAdded;
             }
             return false;

@@ -11,7 +11,6 @@ namespace InterviewVideoStraeming.Models
     {        
         public string Message {  get; set; }
         public User User { get; set; }
-        public Video Video { get; set; }
 
     }
 }
