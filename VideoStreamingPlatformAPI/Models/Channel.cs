@@ -26,7 +26,7 @@ namespace InterviewVideoStraeming.Models
             Subscribers = new List<User>();
         }
 
-        public void AddVideo(Video video)
+        public void NotifySubscribers(Video video)
         {
             
             Videos.Add(video);

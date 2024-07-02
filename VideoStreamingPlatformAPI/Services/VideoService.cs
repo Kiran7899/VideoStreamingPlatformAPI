@@ -23,7 +23,7 @@ namespace VideoStreamingPlatformAPI.Services
         {            
             var video = VideoRepository.CreateVideo(UserEmail, DepartmentType, Title, channelId);
             var channel = channelRepository.GetChannelById(channelId);
-            channel.AddVideo(video);
+            channel.NotifySubscribers(video);
 
             //OnVideoUploaded(channelId, Title, UserEmail);
             return video;
