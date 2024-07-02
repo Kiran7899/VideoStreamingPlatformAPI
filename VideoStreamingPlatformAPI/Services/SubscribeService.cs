@@ -21,7 +21,7 @@ namespace VideoStreamingPlatformAPI.Services
 
             channel.Subscribers.Add(user);
 
-            VideoService.VideoUploaded += user.ReceiveNotificationFromSubscribedChannels;
+            channel.VideoUploaded += user.ReceiveNotificationFromSubscribedChannels;
 
         }
 
@@ -32,7 +32,7 @@ namespace VideoStreamingPlatformAPI.Services
 
             channel.Subscribers.Remove(user);
 
-            VideoService.VideoUploaded -= user.ReceiveNotificationFromSubscribedChannels;
+            channel.VideoUploaded -= user.ReceiveNotificationFromSubscribedChannels;
 
         }
     }
